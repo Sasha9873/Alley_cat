@@ -57,12 +57,19 @@ public class cat_walk : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        
+        if (isGrounded && Input.GetKeyDown("space"))
+        {
+            rigidbody.AddForce(Vector3.up * jumpHeight);
+        }
+        else if (Input.GetKeyDown(KeyCode.B) && isGrounded)
+        {
+            rigidbody.AddForce(Vector3.up * doubleJumpHeight);
+        }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         var delta = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         //var move_look = Camera.main.transform.TransformDirection(delta);
@@ -88,16 +95,6 @@ public class cat_walk : MonoBehaviour
             transform.rotation = look;
             //transform.rotation = (Camera.main.transform.rotation);
 
-        }
-
-        
-        if (isGrounded && Input.GetKeyDown("space"))
-        {
-            rigidbody.AddForce(Vector3.up * jumpHeight);
-        }
-        else if (Input.GetKeyDown(KeyCode.B) && isGrounded)
-        {
-            rigidbody.AddForce(Vector3.up * doubleJumpHeight);
         }
 
         
